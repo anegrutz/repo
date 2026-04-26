@@ -1,38 +1,44 @@
-import { Pressable, Text, View } from 'react-native';
-import { router } from 'expo-router';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { signOut } from '@/features/auth/api';
-import { useProfile } from '@/features/profile/useProfile';
+import { CardStack } from '@/components/swipe/CardStack';
+import { directionToFirestore } from '@/features/matching/api';
+import { useDiscovery } from '@/features/matching/useDiscovery';
 
-export default function Home() {
+export default function Discover() {
   const { t } = useTranslation();
-  const { profile } = useProfile();
+  const { cards, isLoading, isError, refetch, swipe } = useDiscovery();
 
-  const onSignOut = async () => {
-    await signOut();
-    router.replace('/');
-  };
+  if (isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center bg-bg">
+        <ActivityIndicator color="#7cd25a" />
+      </View>
+    );
+  }
+
+  if (isError) {
+    return (
+      <View className="flex-1 items-center justify-center bg-bg px-6">
+        <Text className="text-haze-200 text-center text-base">
+          {t('discover.error')}
+        </Text>
+        <Text className="text-leaf-400 mt-2 text-sm" onPress={() => refetch()}>
+          {t('discover.retry')}
+        </Text>
+      </View>
+    );
+  }
 
   return (
-    <View className="flex-1 items-center justify-center bg-bg px-6">
-      <Text className="text-leaf-400 text-3xl font-bold">{t('tabs.home.title')}</Text>
-      {profile ? (
-        <Text className="text-haze-200 mt-3 text-center text-base">
-          {profile.displayName} • {profile.vibe} • {profile.photos.length} foto&apos;s
-        </Text>
-      ) : null}
-      <Text className="text-haze-400 mt-3 text-center text-sm">
-        {t('tabs.home.body')}
-      </Text>
-
-      <Pressable
-        onPress={onSignOut}
-        className="border-haze-600 mt-12 rounded-2xl border px-6 py-3"
-        accessibilityRole="button"
-      >
-        <Text className="text-haze-200 text-sm">Sign out</Text>
-      </Pressable>
+    <View className="flex-1 bg-bg p-4">
+      <CardStack
+        cards={cards}
+        emptyLabel={t('discover.empty')}
+        onSwiped={(uid, outcome) => {
+          void swipe(uid, directionToFirestore(outcome));
+        }}
+      />
     </View>
   );
 }
