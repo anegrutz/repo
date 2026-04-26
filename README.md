@@ -2,7 +2,7 @@
 
 Social discovery for the 420-friendly lifestyle in the Netherlands. **NL-only**, production-track.
 
-> Status: **Phase 5 — Puff Map.** `react-native-maps` with friend avatars + Couch-Lock toggle + Safe First Date suggestion (midpoint of two users + nearest curated coffeeshop). Locations are fuzzed (±200m) before any Firestore write. Real iDIN + social sign-in still pending Phase 1b.
+> Status: **Phase 6 — Safety & Moderation.** Report / unmatch from the chat header, auto-moderation on chat messages via Perspective API (allow / flag / block thresholds), `moderation_queue` collection for admin review. Real iDIN + social sign-in still pending Phase 1b. Photo Safe Search + admin dashboard land in Phase 7.
 
 ## Stack
 
@@ -91,7 +91,7 @@ e2e/                 Detox tests (added Phase 3+)
 | 3     | Pass or Ash swipe + matching algorithm ✅ |
 | 4     | Real-time chat + AI icebreaker (Anthropic) ✅ |
 | 5     | Puff Map + Couch-Lock + Safe First Date ✅ |
-| 6     | Safety & moderation (report/block/auto-mod) |
+| 6     | Safety & moderation (report/unmatch/auto-mod) ✅ |
 | 7     | Production hardening (rules tests, App Check, Sentry, store assets) |
 
 After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
@@ -107,6 +107,20 @@ After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 - **18+ verification**: real KYC provider (iDIN / Yoti / Onfido) — chosen in Phase 1.
 - **Moderation**: Perspective API (text) + Cloud Vision Safe Search (images), wired in
   Phase 6.
+
+## Definition of Done — Phase 6
+
+- [x] Report a user from the chat header → `/reports/{auto}` doc with `reporterId`, `reportedId`, `reason`, optional `matchId` + `note`, status `pending`
+- [x] Five canonical report reasons (`harassment`, `inappropriate_photos`, `underage`, `spam`, `other`) wired with i18n
+- [x] Unmatch from the chat header → flips `match.status` to `unmatched` and pops back; existing rules already block writes to `users` so this passes
+- [x] `moderateMessage` Cloud Function calls Perspective API on every new message — `TOXICITY` and `SEVERE_TOXICITY` summary scores combined; `scoreToAction` maps score → `allow | flag | block`
+- [x] Block action redacts message text in place (`text` set to placeholder, `redactedText` preserves original) and logs to `moderation_queue`
+- [x] Flag action keeps the text but stores `moderation: {score, action, scoredAt}` and queues it
+- [x] Function gracefully no-ops when `PERSPECTIVE_API_KEY` is not configured (dev/test environments)
+- [x] `scoreToAction` thresholds + reasons enum unit tested (47 tests across 7 suites)
+- [ ] Phase 7: Cloud Vision Safe Search on `onPhotoUploaded`
+- [ ] Phase 7: admin dashboard reading `/reports` + `/moderation_queue`
+- [ ] Phase 7: rate-limit `reports` writes per reporter (anti-abuse)
 
 ## Definition of Done — Phase 5
 
