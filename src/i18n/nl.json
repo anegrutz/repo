@@ -46,6 +46,7 @@
   "tabs": {
     "discover": "Ontdek",
     "matches": "Matches",
+    "map": "Kaart",
     "profile": "Profiel",
     "profilePhotos": "foto's",
     "signOut": "Uitloggen",
@@ -69,6 +70,16 @@
     "placeholder": "Schrijf een bericht…",
     "send": "Stuur",
     "icebreaker": "Genereer een ijsbreker"
+  },
+  "map": {
+    "couchLock": "Couch-Lock",
+    "youHere": "Jij bent hier",
+    "youCouchLocked": "Jij bent in Couch-Lock",
+    "midpoint": "Halverwege",
+    "metersFromMidpoint": "{{meters}} m vanaf het middelpunt",
+    "close": "Sluiten",
+    "permissionTitle": "Locatie nodig",
+    "permissionBody": "Sta locatietoegang toe om vrienden op de Puff Map te zien. Je locatie wordt altijd vervaagd opgeslagen."
   },
   "onboarding": {
     "stepLabel": "Stap {{current}} van {{total}}",
