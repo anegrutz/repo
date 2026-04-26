@@ -46,6 +46,7 @@
   "tabs": {
     "discover": "Discover",
     "matches": "Matches",
+    "map": "Map",
     "profile": "Profile",
     "profilePhotos": "photos",
     "signOut": "Sign out",
@@ -69,6 +70,16 @@
     "placeholder": "Write a message…",
     "send": "Send",
     "icebreaker": "Generate an icebreaker"
+  },
+  "map": {
+    "couchLock": "Couch-Lock",
+    "youHere": "You are here",
+    "youCouchLocked": "You are couch-locked",
+    "midpoint": "Midpoint",
+    "metersFromMidpoint": "{{meters}} m from the midpoint",
+    "close": "Close",
+    "permissionTitle": "Location needed",
+    "permissionBody": "Allow location access to see friends on the Puff Map. Your location is always stored fuzzed (±200m)."
   },
   "onboarding": {
     "stepLabel": "Step {{current}} of {{total}}",

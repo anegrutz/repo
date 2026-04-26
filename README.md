@@ -2,7 +2,7 @@
 
 Social discovery for the 420-friendly lifestyle in the Netherlands. **NL-only**, production-track.
 
-> Status: **Phase 4 — Chat + AI Icebreaker.** Real-time Firestore chat per match, AI icebreaker via Cloud Function (Anthropic `claude-opus-4-7` with prompt-cached system prompt + per-match personalization on Indica/Sativa + munchies). Real iDIN + social sign-in still pending Phase 1b.
+> Status: **Phase 5 — Puff Map.** `react-native-maps` with friend avatars + Couch-Lock toggle + Safe First Date suggestion (midpoint of two users + nearest curated coffeeshop). Locations are fuzzed (±200m) before any Firestore write. Real iDIN + social sign-in still pending Phase 1b.
 
 ## Stack
 
@@ -90,7 +90,7 @@ e2e/                 Detox tests (added Phase 3+)
 | 2     | Profile / Vibe Check + photo upload pipeline ✅ |
 | 3     | Pass or Ash swipe + matching algorithm ✅ |
 | 4     | Real-time chat + AI icebreaker (Anthropic) ✅ |
-| 5     | Puff Map + Couch-Lock + Safe First Date |
+| 5     | Puff Map + Couch-Lock + Safe First Date ✅ |
 | 6     | Safety & moderation (report/block/auto-mod) |
 | 7     | Production hardening (rules tests, App Check, Sentry, store assets) |
 
@@ -107,6 +107,17 @@ After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 - **18+ verification**: real KYC provider (iDIN / Yoti / Onfido) — chosen in Phase 1.
 - **Moderation**: Perspective API (text) + Cloud Vision Safe Search (images), wired in
   Phase 6.
+
+## Definition of Done — Phase 5
+
+- [x] `(tabs)/map.tsx` with `react-native-maps`, friend avatars (deterministic per-uid emoji), Couch-Lock toggle in the top-right
+- [x] `updateMyLocation(raw)` always fuzzes via the Phase 0 `fuzz()` helper before writing — raw GPS never leaves the device into Firestore
+- [x] Couch-Lock writes `location.couchLockMode = true` on the user doc; my marker switches to a couch emoji and friends with the flag are hidden from each other's maps
+- [x] Tap a friend marker → `safeMeetForPair(myFuzzy, theirFuzzy)` computes the midpoint and the nearest curated NL coffeeshop; `SafeMeetSheet` surfaces the suggestion
+- [x] Curated NL coffeeshop dataset (`Amsterdam`, `Rotterdam`, `Utrecht`, `Den Haag`, `Eindhoven`, `Groningen`, `Maastricht`) — Phase 7 swaps for Google Places or OSM Overpass
+- [x] `haversine`, `nearestCoffeeshop`, `safeMeetForPair`, `avatarFor`, dataset uniqueness — all pure-helper unit tested
+- [ ] Phase 6: report a friend / unmatch from a marker tap
+- [ ] Phase 7: real coffeeshop API + production location-permission UX
 
 ## Definition of Done — Phase 4
 
