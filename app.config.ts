@@ -78,6 +78,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     eas: {
       projectId: 'REPLACE_WITH_EAS_PROJECT_ID',
     },
+    firebaseProjectId: 'puffmatch-prod',
+    onfido: {
+      // Set ONFIDO_WORKFLOW_ID via EAS env / functions secrets — see SETUP.md.
+    },
     geofence: {
       allowedCountries: ['NL'],
     },
@@ -92,3 +96,4 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     url: 'https://u.expo.dev/REPLACE_WITH_EAS_PROJECT_ID',
   },
 });
+
