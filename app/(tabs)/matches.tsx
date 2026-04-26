@@ -1,4 +1,5 @@
 import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
+import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
 import { useMatches } from '@/features/matching/useMatches';
@@ -35,13 +36,12 @@ export default function Matches() {
         ItemSeparatorComponent={() => <View className="h-3" />}
         renderItem={({ item }) => (
           <Pressable
+            onPress={() => router.push(`/chat/${item.id}`)}
             className="rounded-2xl bg-bg-elevated p-4"
             accessibilityRole="button"
           >
             <Text className="text-haze-200 text-base">{item.otherUid.slice(0, 8)}</Text>
-            <Text className="text-haze-400 mt-1 text-xs">
-              {t('matches.openSoon')}
-            </Text>
+            <Text className="text-haze-400 mt-1 text-xs">{t('matches.openChat')}</Text>
           </Pressable>
         )}
       />

@@ -62,7 +62,13 @@
   "matches": {
     "title": "Je matches",
     "empty": "Nog geen matches. Veeg verder!",
-    "openSoon": "Chat opent in fase 4."
+    "openChat": "Tik om te chatten"
+  },
+  "chat": {
+    "title": "Chat",
+    "placeholder": "Schrijf een bericht…",
+    "send": "Stuur",
+    "icebreaker": "Genereer een ijsbreker"
   },
   "onboarding": {
     "stepLabel": "Stap {{current}} van {{total}}",

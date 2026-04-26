@@ -2,7 +2,7 @@
 
 Social discovery for the 420-friendly lifestyle in the Netherlands. **NL-only**, production-track.
 
-> Status: **Phase 3 — Pass or Ash.** Reanimated 3 swipe deck (right = Pass the joint, left = Ash, up = Hotbox), discovery query against the NL+lastActiveAt index, persisted swipes that fire the `computeMatch` trigger, real-time Matches tab. Chat opens in Phase 4. Real iDIN + social sign-in still pending Phase 1b.
+> Status: **Phase 4 — Chat + AI Icebreaker.** Real-time Firestore chat per match, AI icebreaker via Cloud Function (Anthropic `claude-opus-4-7` with prompt-cached system prompt + per-match personalization on Indica/Sativa + munchies). Real iDIN + social sign-in still pending Phase 1b.
 
 ## Stack
 
@@ -89,7 +89,7 @@ e2e/                 Detox tests (added Phase 3+)
 | 1b    | iDIN webhook + Apple/Google sign-in + Detox E2E |
 | 2     | Profile / Vibe Check + photo upload pipeline ✅ |
 | 3     | Pass or Ash swipe + matching algorithm ✅ |
-| 4     | Real-time chat + AI icebreaker (Anthropic) |
+| 4     | Real-time chat + AI icebreaker (Anthropic) ✅ |
 | 5     | Puff Map + Couch-Lock + Safe First Date |
 | 6     | Safety & moderation (report/block/auto-mod) |
 | 7     | Production hardening (rules tests, App Check, Sentry, store assets) |
@@ -107,6 +107,20 @@ After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 - **18+ verification**: real KYC provider (iDIN / Yoti / Onfido) — chosen in Phase 1.
 - **Moderation**: Perspective API (text) + Cloud Vision Safe Search (images), wired in
   Phase 6.
+
+## Definition of Done — Phase 4
+
+- [x] Chat screen at `app/chat/[matchId].tsx` with real-time Firestore subscription
+- [x] `sendMessage(matchId, text)` writes to `matches/{matchId}/messages` and bumps `lastMessageAt`
+- [x] Auto-scroll to latest message; KeyboardAvoidingView for the composer
+- [x] Matches tab navigates to chat on tap
+- [x] AI icebreaker callable Cloud Function — `claude-opus-4-7`, system prompt cached via `cache_control: {type: "ephemeral"}`, personalization from both users' Indica/Sativa + munchies
+- [x] Function verifies the caller is a participant of an `active` match before generating
+- [x] Cache-hit telemetry logged (`cache_read_input_tokens` / `cache_creation_input_tokens`)
+- [x] `formatTime` + `side` helper unit tests
+- [ ] Phase 6: report a chat / unmatch from inside the chat
+- [ ] Phase 6: text moderation pipeline (Perspective API) wired to `moderateMessage` Firestore trigger
+- [ ] Phase 7: production: store `ANTHROPIC_API_KEY` via `firebase functions:secrets:set`
 
 ## Definition of Done — Phase 3
 
