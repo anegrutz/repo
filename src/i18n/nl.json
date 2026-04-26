@@ -71,6 +71,23 @@
     "send": "Stuur",
     "icebreaker": "Genereer een ijsbreker"
   },
+  "account": {
+    "section": "Account",
+    "export": "Mijn data exporteren",
+    "exportTitle": "Export gereed",
+    "exportBody": "Ongeveer {{size}} bytes JSON. Een productie-export wordt binnenkort als download geleverd.",
+    "delete": "Account verwijderen",
+    "deleteTitle": "Weet je het zeker?",
+    "deleteBody": "Dit verwijdert je profiel, foto's, swipes en sluit al je matches. Onomkeerbaar.",
+    "deleteConfirm": "Ja, verwijder"
+  },
+  "legal": {
+    "privacyTitle": "Privacybeleid",
+    "privacyBody": "PuffMatch slaat alleen de gegevens op die nodig zijn om de dienst te leveren: profielgegevens, foto's, swipes en chats. Je locatie wordt altijd vervaagd opgeslagen (±200m). Wij delen of verkopen je data niet aan derden. Onder GDPR heb je recht op toegang, correctie, dataportabiliteit en verwijdering — gebruik 'Mijn data exporteren' en 'Account verwijderen' in je profiel.",
+    "termsTitle": "Algemene voorwaarden",
+    "termsBody": "PuffMatch is bedoeld voor gebruikers van 18 jaar en ouder in Nederland. Je accepteert dat we accounts mogen schorsen of verwijderen bij overtreding van onze community-richtlijnen. PuffMatch promoot of faciliteert geen illegaal middelengebruik.",
+    "placeholderNote": "Dit is een ontwerp-versie. De productieversie wordt door juridisch advies gefinaliseerd voor de release."
+  },
   "moderation": {
     "menu": "Meer opties",
     "report": "Meld deze gebruiker",

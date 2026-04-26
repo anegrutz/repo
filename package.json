@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "jest",
-    "test:rules": "firebase emulators:exec --only firestore \"jest --config jest.rules.config.js\"",
+    "test:rules": "firebase emulators:exec --only firestore \"jest --config jest.rules.config.cjs\"",
     "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
     "prepare": "husky install || true"
   },
@@ -64,6 +64,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.0",
+    "@firebase/rules-unit-testing": "^3.0.4",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.7.0",
     "@types/jest": "^29.5.13",
@@ -92,7 +93,8 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/functions/",
-      "/e2e/"
+      "/e2e/",
+      "/tests/rules/"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|nativewind))"
