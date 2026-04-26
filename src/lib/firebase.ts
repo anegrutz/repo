@@ -1,14 +1,27 @@
+import Constants from 'expo-constants';
 import firebase from '@react-native-firebase/app';
+import auth from '@react-native-firebase/auth';
+import functions from '@react-native-firebase/functions';
 
 let initialized = false;
 
 /**
- * Phase 0 stub. RNFirebase auto-initializes from `GoogleService-Info.plist`
- * (iOS) and `google-services.json` (Android) once those files are added in
- * Phase 1. App Check, Crashlytics, and analytics wiring follow in Phase 7.
+ * Connects RNFirebase to the local emulator suite when the
+ * `firebase.useEmulators` extra flag is true and the app is in dev. The real
+ * project credentials still have to be loaded by the native modules via
+ * `GoogleService-Info.plist` / `google-services.json` — those land in Phase 7.
  */
 export function initFirebase(): void {
   if (initialized) return;
   if (firebase.apps.length === 0) return;
+
+  const useEmulators =
+    __DEV__ && Boolean(Constants.expoConfig?.extra?.firebase?.useEmulators);
+
+  if (useEmulators) {
+    auth().useEmulator('http://localhost:9099');
+    functions().useEmulator('localhost', 5001);
+  }
+
   initialized = true;
 }

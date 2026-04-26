@@ -81,6 +81,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     geofence: {
       allowedCountries: ['NL'],
     },
+    firebase: {
+      useEmulators: process.env.EXPO_PUBLIC_USE_FIREBASE_EMULATORS === 'true',
+    },
   },
   runtimeVersion: {
     policy: 'appVersion',

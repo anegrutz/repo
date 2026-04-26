@@ -2,11 +2,51 @@
   "welcome": {
     "title": "PuffMatch",
     "subtitle": "Vind je vibe in Nederland.",
-    "cta": "Beginnen",
+    "ctaPrimary": "Beginnen",
+    "ctaSecondary": "Ik heb al een account",
     "legal": "18+ alleen. Door verder te gaan accepteer je onze Voorwaarden en Privacybeleid."
   },
   "geoBlock": {
     "title": "Binnenkort beschikbaar",
-    "body": "PuffMatch is momenteel alleen beschikbaar in Nederland."
+    "body": "PuffMatch is momenteel alleen beschikbaar in Nederland.",
+    "footer": "Mail ons op hello@puffmatch.app om een seintje te krijgen wanneer we in jouw regio lanceren."
+  },
+  "ageGate": {
+    "title": "Bevestig dat je 18+ bent",
+    "body": "We werken samen met iDIN voor een snelle, veilige verificatie via je bank.",
+    "ctaVerify": "Verifieer met iDIN",
+    "ctaMock": "Mock-verificatie (alleen dev)",
+    "verifying": "Bezig met verifiëren…"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Welkom terug",
+      "subtitle": "Log in om verder te gaan.",
+      "email": "E-mail",
+      "password": "Wachtwoord",
+      "submit": "Inloggen",
+      "switchToSignUp": "Nog geen account? Maak er een aan",
+      "errors": {
+        "invalidEmail": "Voer een geldig e-mailadres in",
+        "weakPassword": "Wachtwoord moet minimaal 8 tekens lang zijn",
+        "wrongCredentials": "E-mail of wachtwoord onjuist",
+        "generic": "Er ging iets mis. Probeer het opnieuw."
+      }
+    },
+    "signUp": {
+      "title": "Maak je account aan",
+      "subtitle": "Eerst je account, dan de vibe check.",
+      "email": "E-mail",
+      "password": "Wachtwoord (min. 8 tekens)",
+      "submit": "Account aanmaken",
+      "switchToSignIn": "Al een account? Log in",
+      "agreement": "Door verder te gaan accepteer je onze Voorwaarden en Privacybeleid."
+    }
+  },
+  "tabs": {
+    "home": {
+      "title": "Klaar om te puffmatchen",
+      "body": "Vibe Check en Pass-or-Ash komen in fase 2 en 3."
+    }
   }
 }

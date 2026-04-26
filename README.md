@@ -2,7 +2,7 @@
 
 Social discovery for the 420-friendly lifestyle in the Netherlands. **NL-only**, production-track.
 
-> Status: **Phase 0 — Foundation.** Scaffolding only; no business logic yet.
+> Status: **Phase 1a — Auth + Age Gate.** Email/password auth, geo-fence, and a dev-only mock KYC are wired against the Firebase emulator suite. Real iDIN webhook + social sign-in land in Phase 1b.
 
 ## Stack
 
@@ -31,6 +31,25 @@ npm test
 # 4. Run app (Expo Dev Client required for Firebase native modules)
 npm run start
 ```
+
+### Firebase emulator suite (Phase 1a dev loop)
+
+```bash
+# In one terminal — emulators (auth + firestore + functions + storage + UI)
+npm --prefix functions run build
+firebase emulators:start
+
+# In another terminal — point the app at emulators and start it
+EXPO_PUBLIC_USE_FIREBASE_EMULATORS=true npm run start
+```
+
+Then in the app: **Welcome → Get started → Sign up** with any email + password,
+then on the Age Gate screen tap **Mock verification (dev only)** to set the
+`country: 'NL'` and `ageVerifiedAt` custom claims on your user. The redirect
+logic in `app/index.tsx` will route you into the (tabs) placeholder.
+
+`mockVerifyAge` hard-fails outside the emulator (`FUNCTIONS_EMULATOR=true`),
+so it cannot accidentally ship to production.
 
 Native dev builds use EAS:
 
@@ -65,8 +84,9 @@ e2e/                 Detox tests (added Phase 3+)
 
 | Phase | Scope |
 |-------|-------|
-| 0     | Foundation (this PR): tooling, structure, rules skeleton, CI |
-| 1     | Auth, 18+ KYC, geo-fence NL |
+| 0     | Foundation: tooling, structure, rules skeleton, CI ✅ |
+| 1a    | Email/password auth, geo-fence, mock KYC, redirect gates ✅ |
+| 1b    | iDIN webhook + Apple/Google sign-in + Detox E2E |
 | 2     | Profile / Vibe Check + photo upload pipeline |
 | 3     | Pass or Ash swipe + matching algorithm |
 | 4     | Real-time chat + AI icebreaker (Anthropic) |
@@ -88,16 +108,17 @@ After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 - **Moderation**: Perspective API (text) + Cloud Vision Safe Search (images), wired in
   Phase 6.
 
-## Definition of Done — Phase 0
+## Definition of Done — Phase 1a
 
-- [x] `npm run typecheck` passes
-- [x] `npm run lint` passes
-- [x] `npm test` passes
-- [x] Folder structure matches plan
-- [x] Firestore + Storage rules skeleton present (deny-by-default + allowlists)
-- [x] EAS profiles defined; GitHub Actions CI runs on PR
-- [x] README documents setup + roadmap
-- [ ] Pending Phase 1 confirmation from product owner
+- [x] Welcome / Sign up / Sign in / Age gate / Geo-block screens wired with i18n
+- [x] Email/password auth via `@react-native-firebase/auth` (emulator-ready)
+- [x] Auth state machine + `deriveGate` selector with unit tests
+- [x] `app/index.tsx` redirects on `loading | unauthenticated | wrong-country | age-unverified | allowed`
+- [x] `mockVerifyAge` callable function sets `country` + `ageVerifiedAt` claims, refuses outside emulator
+- [x] Tabs placeholder for verified users (with sign-out)
+- [x] `npm run typecheck`, `npm run lint`, `npm test` all green
+- [ ] Phase 1b: replace `mockVerifyAge` with real iDIN webhook flow
+- [ ] Phase 1b: Apple + Google sign-in + Detox E2E happy-path test
 
 ## License
 
