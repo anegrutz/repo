@@ -23,7 +23,7 @@ export default function RootLayout() {
   }, []);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#0b0f0a' }}>
+    <GestureHandlerRootView className="flex-1 bg-bg">
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <StatusBar style="light" />
