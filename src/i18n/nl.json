@@ -13,10 +13,15 @@
   },
   "ageGate": {
     "title": "Bevestig dat je 18+ bent",
-    "body": "We werken samen met iDIN voor een snelle, veilige verificatie via je bank.",
-    "ctaVerify": "Verifieer met iDIN",
+    "body": "Wij gebruiken Onfido voor een veilige document- en selfie-verificatie. Vul je echte gegevens in.",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "dobPlaceholder": "Geboortedatum (JJJJ-MM-DD)",
+    "ctaVerify": "Verifieer met Onfido",
     "ctaMock": "Mock-verificatie (alleen dev)",
-    "verifying": "Bezig met verifiëren…"
+    "verifying": "Bezig met verifiëren…",
+    "fillAll": "Vul je naam en geboortedatum in (JJJJ-MM-DD).",
+    "notApproved": "Verificatie nog niet goedgekeurd. Probeer het over een minuut opnieuw."
   },
   "auth": {
     "signIn": {

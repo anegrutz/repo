@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint src --ext .ts --max-warnings 0",
+    "test": "jest",
     "serve": "npm run build && firebase emulators:start --only functions",
     "deploy": "firebase deploy --only functions"
   },
@@ -19,9 +20,19 @@
     "sharp": "^0.33.5"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.13",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
     "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
     "typescript": "~5.3.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.test.ts"
+    ]
   }
 }
