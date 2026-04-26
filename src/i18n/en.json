@@ -46,7 +46,42 @@
   "tabs": {
     "home": {
       "title": "Ready to puffmatch",
-      "body": "Vibe Check and Pass-or-Ash arrive in phases 2 and 3."
+      "body": "Pass-or-Ash arrives in phase 3."
+    }
+  },
+  "onboarding": {
+    "stepLabel": "Step {{current}} of {{total}}",
+    "next": "Next",
+    "back": "Back",
+    "save": "Done",
+    "name": {
+      "title": "What should we call you?",
+      "subtitle": "This is what others see on your profile.",
+      "placeholder": "First name"
+    },
+    "photos": {
+      "title": "Add at least 2 photos",
+      "subtitle": "First photo is your main one. Up to 6 photos.",
+      "addCta": "Add photo",
+      "uploading": "Uploading…"
+    },
+    "vibe": {
+      "title": "What's your vibe?",
+      "indicaTitle": "Team Indica",
+      "indicaBody": "Couch-lock, chill, stargazing.",
+      "sativaTitle": "Team Sativa",
+      "sativaBody": "Adventurous, upbeat, on the move."
+    },
+    "munchies": {
+      "title": "What are your go-to munchies?",
+      "subtitle": "Pick at least one.",
+      "options": {
+        "pizza": "Pizza",
+        "sweets": "Sweets & pastries",
+        "fastfood": "Fast food",
+        "snacks": "Chips & snacks",
+        "asian": "Asian"
+      }
     }
   }
 }

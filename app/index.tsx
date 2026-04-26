@@ -4,9 +4,12 @@ import { Redirect } from 'expo-router';
 
 import { resolveCountry } from '@/lib/geofence';
 import { deriveGate, useAuth } from '@/features/auth/store';
+import { useProfile } from '@/features/profile/useProfile';
+import { nextIncompleteStep } from '@/features/profile/schema';
 
 export default function Index() {
   const authState = useAuth((s) => s.state);
+  const { status: profileStatus, profile } = useProfile();
   const [deviceCountry, setDeviceCountry] = useState<string | null>(null);
 
   useEffect(() => {
@@ -41,8 +44,29 @@ export default function Index() {
     case 'age-unverified':
       return <Redirect href="/(auth)/age-gate" />;
     case 'allowed':
-      return <Redirect href="/(tabs)" />;
+      break;
     default:
       return null;
   }
+
+  if (profileStatus === 'loading') {
+    return (
+      <View className="flex-1 items-center justify-center bg-bg">
+        <ActivityIndicator color="#7cd25a" />
+      </View>
+    );
+  }
+
+  if (profileStatus === 'missing') {
+    return <Redirect href="/(onboarding)/name" />;
+  }
+
+  if (profileStatus === 'incomplete') {
+    const step = nextIncompleteStep(profile ?? {});
+    if (step !== 'complete') {
+      return <Redirect href={`/(onboarding)/${step === 'vibe-check' ? 'vibe-check' : step}`} />;
+    }
+  }
+
+  return <Redirect href="/(tabs)" />;
 }

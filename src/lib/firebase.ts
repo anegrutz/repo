@@ -1,7 +1,9 @@
 import Constants from 'expo-constants';
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
+import storage from '@react-native-firebase/storage';
 
 let initialized = false;
 
@@ -20,7 +22,9 @@ export function initFirebase(): void {
 
   if (useEmulators) {
     auth().useEmulator('http://localhost:9099');
+    firestore().useEmulator('localhost', 8080);
     functions().useEmulator('localhost', 5001);
+    storage().useEmulator('localhost', 9199);
   }
 
   initialized = true;
