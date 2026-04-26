@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { initFirebase } from '@/lib/firebase';
 import { initI18n } from '@/i18n';
+import { useAuthListener } from '@/features/auth/AuthGate';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +22,8 @@ export default function RootLayout() {
     initFirebase();
     initI18n();
   }, []);
+
+  useAuthListener();
 
   return (
     <GestureHandlerRootView className="flex-1 bg-bg">

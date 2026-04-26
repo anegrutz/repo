@@ -1,15 +1,17 @@
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function GeoBlock() {
+  const { t } = useTranslation();
+
   return (
     <View className="flex-1 items-center justify-center bg-bg px-6">
-      <Text className="text-leaf-400 text-3xl font-bold">Coming soon</Text>
+      <Text className="text-leaf-400 text-3xl font-bold">{t('geoBlock.title')}</Text>
       <Text className="text-haze-200 mt-3 text-center text-base">
-        PuffMatch is currently available only in the Netherlands.
+        {t('geoBlock.body')}
       </Text>
       <Text className="text-haze-400 mt-6 text-center text-sm">
-        Drop us a note at hello@puffmatch.app to be notified when we launch in your
-        region.
+        {t('geoBlock.footer')}
       </Text>
     </View>
   );

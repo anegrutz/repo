@@ -2,11 +2,51 @@
   "welcome": {
     "title": "PuffMatch",
     "subtitle": "Find your vibe in the Netherlands.",
-    "cta": "Get started",
+    "ctaPrimary": "Get started",
+    "ctaSecondary": "I already have an account",
     "legal": "18+ only. By continuing you accept our Terms and Privacy Policy."
   },
   "geoBlock": {
     "title": "Coming soon",
-    "body": "PuffMatch is currently available only in the Netherlands."
+    "body": "PuffMatch is currently available only in the Netherlands.",
+    "footer": "Drop us a note at hello@puffmatch.app to be notified when we launch in your region."
+  },
+  "ageGate": {
+    "title": "Confirm you're 18+",
+    "body": "We use iDIN for a fast, secure verification through your bank.",
+    "ctaVerify": "Verify with iDIN",
+    "ctaMock": "Mock verification (dev only)",
+    "verifying": "Verifying…"
+  },
+  "auth": {
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Log in to continue.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "switchToSignUp": "No account? Create one",
+      "errors": {
+        "invalidEmail": "Enter a valid email address",
+        "weakPassword": "Password must be at least 8 characters",
+        "wrongCredentials": "Invalid email or password",
+        "generic": "Something went wrong. Please try again."
+      }
+    },
+    "signUp": {
+      "title": "Create your account",
+      "subtitle": "Account first, vibe check next.",
+      "email": "Email",
+      "password": "Password (min. 8 chars)",
+      "submit": "Create account",
+      "switchToSignIn": "Already have an account? Sign in",
+      "agreement": "By continuing you accept our Terms and Privacy Policy."
+    }
+  },
+  "tabs": {
+    "home": {
+      "title": "Ready to puffmatch",
+      "body": "Vibe Check and Pass-or-Ash arrive in phases 2 and 3."
+    }
   }
 }
