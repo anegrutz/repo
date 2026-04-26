@@ -2,7 +2,7 @@
 
 Social discovery for the 420-friendly lifestyle in the Netherlands. **NL-only**, production-track.
 
-> Status: **Phase 1a — Auth + Age Gate.** Email/password auth, geo-fence, and a dev-only mock KYC are wired against the Firebase emulator suite. Real iDIN webhook + social sign-in land in Phase 1b.
+> Status: **Phase 2 — Profile Vibe Check.** Onboarding wizard (name → photos → Indica/Sativa → munchies), photo upload to Storage with a sharp-based resize Cloud Function (256 + 1080 variants), profile persisted to Firestore. Real iDIN + social sign-in still pending Phase 1b.
 
 ## Stack
 
@@ -87,7 +87,7 @@ e2e/                 Detox tests (added Phase 3+)
 | 0     | Foundation: tooling, structure, rules skeleton, CI ✅ |
 | 1a    | Email/password auth, geo-fence, mock KYC, redirect gates ✅ |
 | 1b    | iDIN webhook + Apple/Google sign-in + Detox E2E |
-| 2     | Profile / Vibe Check + photo upload pipeline |
+| 2     | Profile / Vibe Check + photo upload pipeline ✅ |
 | 3     | Pass or Ash swipe + matching algorithm |
 | 4     | Real-time chat + AI icebreaker (Anthropic) |
 | 5     | Puff Map + Couch-Lock + Safe First Date |
@@ -107,6 +107,18 @@ After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 - **18+ verification**: real KYC provider (iDIN / Yoti / Onfido) — chosen in Phase 1.
 - **Moderation**: Perspective API (text) + Cloud Vision Safe Search (images), wired in
   Phase 6.
+
+## Definition of Done — Phase 2
+
+- [x] Onboarding screens: name / photos / vibe-check / munchies, with `StepHeader`
+- [x] `pickAndUploadPhoto` — image picker + 1080px client-side compression + upload to Storage (`users/{uid}/photos/{photoId}.jpg`)
+- [x] Cloud Function `onPhotoUploaded` (sharp) writes `_preview.jpg` (256px) + `_display.jpg` (1080px) variants and skips its own outputs
+- [x] `profileSchema` (zod) + `nextIncompleteStep` selector with unit tests
+- [x] `useProfile()` (TanStack Query) → `loading | missing | incomplete | complete`
+- [x] `app/index.tsx` redirects to the right onboarding step based on profile state
+- [x] (tabs) home shows a profile snapshot
+- [ ] Phase 6: photo verification (selfie liveness), report/block, auto-moderation
+- [ ] Phase 7: audited Firestore rules tests for the new write surface
 
 ## Definition of Done — Phase 1a
 

@@ -46,7 +46,42 @@
   "tabs": {
     "home": {
       "title": "Klaar om te puffmatchen",
-      "body": "Vibe Check en Pass-or-Ash komen in fase 2 en 3."
+      "body": "Pass-or-Ash komt in fase 3."
+    }
+  },
+  "onboarding": {
+    "stepLabel": "Stap {{current}} van {{total}}",
+    "next": "Verder",
+    "back": "Terug",
+    "save": "Klaar",
+    "name": {
+      "title": "Hoe noem je jezelf?",
+      "subtitle": "Dit is wat anderen zien op je profiel.",
+      "placeholder": "Voornaam"
+    },
+    "photos": {
+      "title": "Voeg minstens 2 foto's toe",
+      "subtitle": "Eerste foto is je hoofdfoto. Maximaal 6 foto's.",
+      "addCta": "Foto toevoegen",
+      "uploading": "Uploaden…"
+    },
+    "vibe": {
+      "title": "Wat is je vibe?",
+      "indicaTitle": "Team Indica",
+      "indicaBody": "Couch-lock, chill, sterrenstaren.",
+      "sativaTitle": "Team Sativa",
+      "sativaBody": "Avontuurlijk, opgewekt, op pad."
+    },
+    "munchies": {
+      "title": "Wat zijn je go-to munchies?",
+      "subtitle": "Kies er minstens één.",
+      "options": {
+        "pizza": "Pizza",
+        "sweets": "Snoep & koek",
+        "fastfood": "Fastfood",
+        "snacks": "Chips & snacks",
+        "asian": "Aziatisch"
+      }
     }
   }
 }
