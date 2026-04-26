@@ -44,10 +44,25 @@
     }
   },
   "tabs": {
+    "discover": "Ontdek",
+    "matches": "Matches",
+    "profile": "Profiel",
+    "profilePhotos": "foto's",
+    "signOut": "Uitloggen",
     "home": {
       "title": "Klaar om te puffmatchen",
       "body": "Pass-or-Ash komt in fase 3."
     }
+  },
+  "discover": {
+    "empty": "Voor nu zijn er geen nieuwe vibes. Kom later terug.",
+    "error": "Kon de vibes niet laden.",
+    "retry": "Opnieuw proberen"
+  },
+  "matches": {
+    "title": "Je matches",
+    "empty": "Nog geen matches. Veeg verder!",
+    "openSoon": "Chat opent in fase 4."
   },
   "onboarding": {
     "stepLabel": "Stap {{current}} van {{total}}",

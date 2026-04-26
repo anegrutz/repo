@@ -44,10 +44,25 @@
     }
   },
   "tabs": {
+    "discover": "Discover",
+    "matches": "Matches",
+    "profile": "Profile",
+    "profilePhotos": "photos",
+    "signOut": "Sign out",
     "home": {
       "title": "Ready to puffmatch",
       "body": "Pass-or-Ash arrives in phase 3."
     }
+  },
+  "discover": {
+    "empty": "No new vibes for now. Check back later.",
+    "error": "Couldn't load vibes.",
+    "retry": "Retry"
+  },
+  "matches": {
+    "title": "Your matches",
+    "empty": "No matches yet. Keep swiping!",
+    "openSoon": "Chat opens in phase 4."
   },
   "onboarding": {
     "stepLabel": "Step {{current}} of {{total}}",

@@ -2,7 +2,7 @@
 
 Social discovery for the 420-friendly lifestyle in the Netherlands. **NL-only**, production-track.
 
-> Status: **Phase 2 — Profile Vibe Check.** Onboarding wizard (name → photos → Indica/Sativa → munchies), photo upload to Storage with a sharp-based resize Cloud Function (256 + 1080 variants), profile persisted to Firestore. Real iDIN + social sign-in still pending Phase 1b.
+> Status: **Phase 3 — Pass or Ash.** Reanimated 3 swipe deck (right = Pass the joint, left = Ash, up = Hotbox), discovery query against the NL+lastActiveAt index, persisted swipes that fire the `computeMatch` trigger, real-time Matches tab. Chat opens in Phase 4. Real iDIN + social sign-in still pending Phase 1b.
 
 ## Stack
 
@@ -88,7 +88,7 @@ e2e/                 Detox tests (added Phase 3+)
 | 1a    | Email/password auth, geo-fence, mock KYC, redirect gates ✅ |
 | 1b    | iDIN webhook + Apple/Google sign-in + Detox E2E |
 | 2     | Profile / Vibe Check + photo upload pipeline ✅ |
-| 3     | Pass or Ash swipe + matching algorithm |
+| 3     | Pass or Ash swipe + matching algorithm ✅ |
 | 4     | Real-time chat + AI icebreaker (Anthropic) |
 | 5     | Puff Map + Couch-Lock + Safe First Date |
 | 6     | Safety & moderation (report/block/auto-mod) |
@@ -107,6 +107,18 @@ After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 - **18+ verification**: real KYC provider (iDIN / Yoti / Onfido) — chosen in Phase 1.
 - **Moderation**: Perspective API (text) + Cloud Vision Safe Search (images), wired in
   Phase 6.
+
+## Definition of Done — Phase 3
+
+- [x] `SwipeCard` (Reanimated 3 + `Gesture.Pan`) with right / left / up gestures, threshold + velocity, fly-off animation
+- [x] `CardStack` shows top + next card with stack offset; previous fades back when top flies off
+- [x] `fetchDiscoveryDeck()` queries `users` (`country == 'NL'`, ordered by `lastActiveAt`), excludes self + already-swiped
+- [x] `recordSwipe(uid, direction)` writes `/swipes/{uid}/targets/{targetUid}` → fires `computeMatch` Cloud Function trigger
+- [x] `useMatches()` subscribes to `matches where users array-contains me, status == 'active'` in real time
+- [x] `(tabs)` layout: Discover / Matches / Profile
+- [x] `computeMatchId` + direction-to-firestore mapping unit tests
+- [ ] Phase 4: real chat opens when tapping a match
+- [ ] Phase 6: report / unmatch / block on the Matches list
 
 ## Definition of Done — Phase 2
 
