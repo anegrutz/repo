@@ -71,6 +71,25 @@
     "send": "Stuur",
     "icebreaker": "Genereer een ijsbreker"
   },
+  "moderation": {
+    "menu": "Meer opties",
+    "report": "Meld deze gebruiker",
+    "unmatch": "Match verbreken",
+    "cancel": "Annuleren",
+    "reasons": {
+      "harassment": "Pesten of intimidatie",
+      "inappropriate_photos": "Ongepaste foto's",
+      "underage": "Mogelijk minderjarig",
+      "spam": "Spam of nepaccount",
+      "other": "Anders"
+    },
+    "reportThanksTitle": "Bedankt voor je melding",
+    "reportThanksBody": "Onze moderators bekijken het zo snel mogelijk.",
+    "unmatchConfirmTitle": "Match verbreken?",
+    "unmatchConfirmBody": "Je kunt deze persoon hierna niet meer berichten.",
+    "errorTitle": "Er ging iets mis",
+    "errorBody": "Probeer het later opnieuw."
+  },
   "map": {
     "couchLock": "Couch-Lock",
     "youHere": "Jij bent hier",

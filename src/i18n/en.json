@@ -71,6 +71,25 @@
     "send": "Send",
     "icebreaker": "Generate an icebreaker"
   },
+  "moderation": {
+    "menu": "More options",
+    "report": "Report this user",
+    "unmatch": "Unmatch",
+    "cancel": "Cancel",
+    "reasons": {
+      "harassment": "Harassment or bullying",
+      "inappropriate_photos": "Inappropriate photos",
+      "underage": "Possibly underage",
+      "spam": "Spam or fake account",
+      "other": "Something else"
+    },
+    "reportThanksTitle": "Thanks for the report",
+    "reportThanksBody": "Our moderators will take a look as soon as possible.",
+    "unmatchConfirmTitle": "Unmatch?",
+    "unmatchConfirmBody": "You won't be able to message this person after this.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "Please try again later."
+  },
   "map": {
     "couchLock": "Couch-Lock",
     "youHere": "You are here",
