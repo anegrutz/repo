@@ -1,0 +1,38 @@
+node_modules/
+.expo/
+.expo-shared/
+dist/
+web-build/
+coverage/
+
+# Native
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Macos
+.DS_Store
+
+# Env
+.env
+.env.local
+.env.*.local
+secrets/
+
+# Build outputs
+functions/lib/
+
+# IDE
+.vscode/
+.idea/
+*.swp

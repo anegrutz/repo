@@ -1,0 +1,12 @@
+{
+  "welcome": {
+    "title": "PuffMatch",
+    "subtitle": "Vind je vibe in Nederland.",
+    "cta": "Beginnen",
+    "legal": "18+ alleen. Door verder te gaan accepteer je onze Voorwaarden en Privacybeleid."
+  },
+  "geoBlock": {
+    "title": "Binnenkort beschikbaar",
+    "body": "PuffMatch is momenteel alleen beschikbaar in Nederland."
+  }
+}

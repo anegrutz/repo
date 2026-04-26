@@ -1,0 +1,12 @@
+{
+  "welcome": {
+    "title": "PuffMatch",
+    "subtitle": "Find your vibe in the Netherlands.",
+    "cta": "Get started",
+    "legal": "18+ only. By continuing you accept our Terms and Privacy Policy."
+  },
+  "geoBlock": {
+    "title": "Coming soon",
+    "body": "PuffMatch is currently available only in the Netherlands."
+  }
+}

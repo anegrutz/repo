@@ -1,0 +1,71 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isAdult() {
+      return isSignedIn()
+        && request.auth.token.ageVerifiedAt is number
+        && request.auth.token.ageVerifiedAt > 0;
+    }
+
+    function isInNL() {
+      return isSignedIn() && request.auth.token.country == 'NL';
+    }
+
+    function isMatchParticipant(matchId) {
+      return isSignedIn()
+        && (request.auth.uid in get(/databases/$(database)/documents/matches/$(matchId)).data.users);
+    }
+
+    match /users/{uid} {
+      allow read: if isSignedIn() && isAdult() && isInNL();
+      allow create: if isSelf(uid)
+        && isAdult()
+        && request.resource.data.country == 'NL';
+      allow update: if isSelf(uid)
+        && request.resource.data.country == 'NL'
+        && request.resource.data.ageVerifiedAt == resource.data.ageVerifiedAt;
+      allow delete: if isSelf(uid);
+    }
+
+    match /swipes/{swiperUid}/targets/{targetUid} {
+      allow read, write: if isSelf(swiperUid) && isAdult() && isInNL();
+    }
+
+    match /matches/{matchId} {
+      allow read: if isSignedIn() && isMatchParticipant(matchId);
+      allow update: if isSignedIn() && isMatchParticipant(matchId)
+        && request.resource.data.users == resource.data.users;
+      allow create, delete: if false;
+
+      match /messages/{messageId} {
+        allow read: if isSignedIn() && isMatchParticipant(matchId);
+        allow create: if isSignedIn()
+          && isMatchParticipant(matchId)
+          && request.resource.data.senderId == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() <= 2000;
+        allow update, delete: if false;
+      }
+    }
+
+    match /reports/{reportId} {
+      allow create: if isSignedIn()
+        && request.resource.data.reporterId == request.auth.uid;
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
