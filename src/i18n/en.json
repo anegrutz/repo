@@ -71,6 +71,23 @@
     "send": "Send",
     "icebreaker": "Generate an icebreaker"
   },
+  "account": {
+    "section": "Account",
+    "export": "Export my data",
+    "exportTitle": "Export ready",
+    "exportBody": "About {{size}} bytes of JSON. A production export will be delivered as a download soon.",
+    "delete": "Delete account",
+    "deleteTitle": "Are you sure?",
+    "deleteBody": "This deletes your profile, photos, swipes and ends all your matches. Irreversible.",
+    "deleteConfirm": "Yes, delete"
+  },
+  "legal": {
+    "privacyTitle": "Privacy Policy",
+    "privacyBody": "PuffMatch only stores the data needed to provide the service: profile data, photos, swipes, and chats. Your location is always stored fuzzed (±200m). We do not share or sell your data to third parties. Under GDPR you have the right to access, correction, data portability, and deletion — use 'Export my data' and 'Delete account' in your profile.",
+    "termsTitle": "Terms of Service",
+    "termsBody": "PuffMatch is intended for users aged 18 and over in the Netherlands. You accept that we may suspend or delete accounts that violate our community guidelines. PuffMatch does not promote or facilitate illegal substance use.",
+    "placeholderNote": "This is a draft version. The production version will be finalized by legal counsel before release."
+  },
   "moderation": {
     "menu": "More options",
     "report": "Report this user",

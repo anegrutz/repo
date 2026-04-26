@@ -2,7 +2,7 @@
 
 Social discovery for the 420-friendly lifestyle in the Netherlands. **NL-only**, production-track.
 
-> Status: **Phase 6 — Safety & Moderation.** Report / unmatch from the chat header, auto-moderation on chat messages via Perspective API (allow / flag / block thresholds), `moderation_queue` collection for admin review. Real iDIN + social sign-in still pending Phase 1b. Photo Safe Search + admin dashboard land in Phase 7.
+> Status: **Phase 7 — Production hardening.** Firestore rules unit tests (`@firebase/rules-unit-testing` against the emulator), GDPR account-delete + data-export Cloud Functions, Sentry init, Privacy + Terms placeholder screens. **All 8 phases of the original plan complete.** Pending external dependencies for go-live: Phase 1b (real iDIN + Apple/Google sign-in + Detox E2E), real Firebase project, Cloud Vision Safe Search, admin dashboard.
 
 ## Stack
 
@@ -92,7 +92,7 @@ e2e/                 Detox tests (added Phase 3+)
 | 4     | Real-time chat + AI icebreaker (Anthropic) ✅ |
 | 5     | Puff Map + Couch-Lock + Safe First Date ✅ |
 | 6     | Safety & moderation (report/unmatch/auto-mod) ✅ |
-| 7     | Production hardening (rules tests, App Check, Sentry, store assets) |
+| 7     | Production hardening (rules tests, GDPR, Sentry, legal) ✅ |
 
 After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 
@@ -107,6 +107,32 @@ After each phase: STOP and wait for explicit "Da, continuă" before proceeding.
 - **18+ verification**: real KYC provider (iDIN / Yoti / Onfido) — chosen in Phase 1.
 - **Moderation**: Perspective API (text) + Cloud Vision Safe Search (images), wired in
   Phase 6.
+
+## Definition of Done — Phase 7
+
+- [x] **Firestore rules unit tests** (`@firebase/rules-unit-testing`, run via `npm run test:rules` against the emulator) — covers users / swipes / matches / messages / reports with positive and negative cases (oversize messages, spoofed senderId, non-participant access, tampered claims, etc.)
+- [x] **`deleteMyAccount` Cloud Function** — recursively deletes swipes, marks all matches as `unmatched`, deletes photos in Storage, deletes the user profile, then deletes the auth user (last so the irreversible step happens after data is cleared)
+- [x] **`requestDataExport` Cloud Function** — returns a JSON snapshot of profile + swipes + matches + messages (GDPR Article 20)
+- [x] **Sentry init** gated on `EXPO_PUBLIC_SENTRY_DSN` (no-op in dev/emulator runs)
+- [x] **Privacy Policy + Terms of Service** placeholder screens (`app/legal/privacy.tsx`, `app/legal/terms.tsx`) with a clear disclaimer that final copy comes from legal counsel
+- [x] **Profile tab Account section** — Export, Privacy, Terms, Sign out, Delete (in that order, with a destructive-style confirm on Delete)
+
+## Go-live checklist (still required for App Store / Play Store submission)
+
+These items are out of scope for the in-codebase phases and require either external accounts or final design / legal review:
+
+- [ ] Real Firebase project (`puffmatch-prod`, region `europe-west1`) + `GoogleService-Info.plist` + `google-services.json`
+- [ ] iDIN merchant account → wire real KYC webhook (replaces `mockVerifyAge`) — Phase 1b
+- [ ] Apple Sign-In + Google Sign-In (bundle IDs registered) — Phase 1b
+- [ ] Detox E2E happy-path: signup → KYC → Vibe Check → match → chat → map — Phase 1b
+- [ ] App Check (`Play Integrity` on Android, `App Attest` on iOS)
+- [ ] Cloud Vision Safe Search on `onPhotoUploaded` (graceful no-op already in place)
+- [ ] Admin dashboard reading `/reports` + `/moderation_queue` (separate web project)
+- [ ] Push notifications via Expo Notifications + token persistence
+- [ ] App Store Connect + Play Console listing (screenshots, description, **NL-only** geo restriction in metadata)
+- [ ] Final Privacy Policy + Terms of Service from legal counsel (replace placeholder copy)
+- [ ] DPA signed with Firebase / Google Cloud (GDPR Article 28)
+- [ ] Beta release: TestFlight + Internal Testing track — `eas submit --profile production`
 
 ## Definition of Done — Phase 6
 
