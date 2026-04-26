@@ -62,7 +62,13 @@
   "matches": {
     "title": "Your matches",
     "empty": "No matches yet. Keep swiping!",
-    "openSoon": "Chat opens in phase 4."
+    "openChat": "Tap to open chat"
+  },
+  "chat": {
+    "title": "Chat",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "icebreaker": "Generate an icebreaker"
   },
   "onboarding": {
     "stepLabel": "Step {{current}} of {{total}}",
