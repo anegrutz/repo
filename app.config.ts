@@ -77,6 +77,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   extra: {
     router: { origin: false },
+    eas: {
+      projectId: 'ef9b4193-0d2c-4b07-b922-36d6c00a28f4',
+    },
     geofence: {
       allowedCountries: ['NL'],
     },
@@ -88,6 +91,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     policy: 'appVersion',
   },
   updates: {
-    url: 'https://u.expo.dev/REPLACE_WITH_EAS_PROJECT_ID',
+    url: 'https://u.expo.dev/ef9b4193-0d2c-4b07-b922-36d6c00a28f4',
   },
 });
