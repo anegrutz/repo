@@ -77,9 +77,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   extra: {
     router: { origin: false },
-    eas: {
-      projectId: 'REPLACE_WITH_EAS_PROJECT_ID',
-    },
     geofence: {
       allowedCountries: ['NL'],
     },
