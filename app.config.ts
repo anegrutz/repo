@@ -18,6 +18,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: false,
     bundleIdentifier: 'com.puffmatch.app',
+    googleServicesFile: process.env.GOOGLE_SERVICES_INFO_PLIST ?? './GoogleService-Info.plist',
     config: {
       usesNonExemptEncryption: false,
     },
@@ -36,6 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#0b0f0a',
     },
     package: 'com.puffmatch.app',
+    googleServicesFile: process.env.GOOGLE_SERVICES_JSON ?? './google-services.json',
     permissions: [
       'ACCESS_COARSE_LOCATION',
       'ACCESS_FINE_LOCATION',
