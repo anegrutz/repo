@@ -29,6 +29,10 @@ yarn-error.*
 .env.*.local
 secrets/
 
+# Firebase native config (contains API keys — never commit)
+GoogleService-Info.plist
+google-services.json
+
 # Build outputs
 functions/lib/
 
