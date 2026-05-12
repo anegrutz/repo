@@ -13,10 +13,15 @@
   },
   "ageGate": {
     "title": "Confirm you're 18+",
-    "body": "We use iDIN for a fast, secure verification through your bank.",
-    "ctaVerify": "Verify with iDIN",
+    "body": "We use Onfido for secure document + selfie verification. Use your real details.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "dobPlaceholder": "Date of birth (YYYY-MM-DD)",
+    "ctaVerify": "Verify with Onfido",
     "ctaMock": "Mock verification (dev only)",
-    "verifying": "Verifying…"
+    "verifying": "Verifying…",
+    "fillAll": "Fill in your name and date of birth (YYYY-MM-DD).",
+    "notApproved": "Verification not approved yet. Try again in a minute."
   },
   "auth": {
     "signIn": {
